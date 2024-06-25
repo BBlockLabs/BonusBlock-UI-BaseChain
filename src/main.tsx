@@ -17,7 +17,6 @@ import ErrorView from './views/ErrorView.tsx';
 import { WalletProvider } from "@coinbase/waas-sdk-web-react";
 import QuestsView from './views/QuestsView.tsx';
 
-const PROJECT_ID = process.env.COINBASE_PROJECT_ID; 
 const router = createBrowserRouter([
     {
         path: "/",
@@ -67,7 +66,7 @@ const router = createBrowserRouter([
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <WalletProvider projectId={PROJECT_ID} verbose collectAndReportMetrics enableHostedBackups>
+    <WalletProvider projectId={import.meta.env.VITE_COINBASE_PROJECT_ID} verbose collectAndReportMetrics enableHostedBackups>
       <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
               {/*<Theme>*/}
