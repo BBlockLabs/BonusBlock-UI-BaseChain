@@ -28,6 +28,7 @@ module.exports = {
         tagBtnBg: '#181A1E',
         cardBg: '#090A0C',
         cardText: '#F1F1F1',
+        modalBg: '#414141',
         icon: '#CBCFD2',
         primary: {
           DEFAULT: "hsl(var(--primary))",

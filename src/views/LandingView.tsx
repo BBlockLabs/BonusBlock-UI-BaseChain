@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom";
 import XionLogo from '../assets/logo/Base_BB.svg';
 import CoinFalling from '../assets/svg/coinFalling.svg';
 import SmartWalletButton from "@/components/SmartWalletButton.tsx";
+import InviteCodeModal from "@/components/InviteCodeModal.tsx";
+import { useState } from "react";
 
 const tags = ['Memes', 'RWA', 'DeFi', 'NFTs'];
 
 const LandingView = () => {
     const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState(false);
     // const isAuthenticated = useSelector((state: RootState) => state.login.isAuthenticated);
 
     /* useEffect(() => {
@@ -110,6 +113,10 @@ const LandingView = () => {
                 <SmartWalletButton onClick={handleLogin} />
             </div>
             <PageFooter backgroundColor="bg-transparent" textColor="text-gray-400" iconColor="text-icon" />
+            <InviteCodeModal
+                open={isModalOpen}
+                onOpenChange={() => setIsModalOpen(!isModalOpen)}
+            />
         </div>
     );
 }
