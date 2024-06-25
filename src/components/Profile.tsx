@@ -10,6 +10,8 @@ import useMediaQuery from '../hooks/useMediaQuery.tsx';
 import { Button } from './Button.tsx';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Modal from './Modal.tsx';
+import { useWalletContext, useEVMAddress } from "@coinbase/waas-sdk-web-react";
+
 
 const navLinkStyles = 'text-[32px]/[38px] text-white font-light uppercase tracking-[-0.02em]';
 
