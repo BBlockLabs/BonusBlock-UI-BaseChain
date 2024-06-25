@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // import { useEffect } from "react";
 import XionLogo from '../assets/logo/Base_BB.svg';
 import CoinFalling from '../assets/svg/coinFalling.svg';
-import SmartWalletButton from "@/components/SmartWalletButton.tsx";
+import { SmartWalletLoginButton } from "@/components/SmartWalletButton.tsx";
 import InviteCodeModal from "@/components/InviteCodeModal.tsx";
 import { useState } from "react";
 
@@ -40,7 +40,7 @@ const LandingView = () => {
                 <p className="mt-12 mb-[89px] text-[32px]/[34px] font-medium text-white max-w-[454px]">
                     Contribute. Earn. Win. Ape into Base with Bonus Block.
                 </p>
-                <SmartWalletButton onClick={handleLogin} />
+                <SmartWalletLoginButton onClick={handleLogin} />
             </div>
             <div className="flex gap-[30px] py-[29px] mt-[69px]">
                 {tags.map((tag, index) => (
@@ -110,7 +110,7 @@ const LandingView = () => {
                 </div>
             </div>
             <div className="self-center mt-2.5 mb-[60px]">
-                <SmartWalletButton onClick={handleLogin} />
+                <SmartWalletLoginButton onClick={handleLogin} />
             </div>
             <PageFooter backgroundColor="bg-transparent" textColor="text-gray-400" iconColor="text-icon" />
             <InviteCodeModal
