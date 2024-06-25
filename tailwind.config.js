@@ -23,6 +23,12 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        gold: '#F5BF5B',
+        walletBtnHoverBg: '#121212EB',
+        tagBtnBg: '#181A1E',
+        cardBg: '#090A0C',
+        cardText: '#F1F1F1',
+        icon: '#CBCFD2',
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -51,11 +57,6 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
         "accordion-down": {

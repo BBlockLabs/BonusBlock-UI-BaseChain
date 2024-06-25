@@ -101,6 +101,10 @@ body {
   box-shadow: 0px 0px 50px 0px #FFFFFF40;
 }
 
+.card-shadow {
+  box-shadow: 3px 5px 0px 0px #D79D31;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
