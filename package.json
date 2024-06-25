@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@coinbase/waas-sdk-web-react": "^3.2.2",
     "@coinbase/wallet-sdk": "^4.0.4",
     "@notifi-network/notifi-core": "^0.90.9-alpha.17",
     "@notifi-network/notifi-frontend-client": "^0.90.9-alpha.17",
@@ -23,7 +24,7 @@
     "buffer": "^6.0.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "ethers": "^6.11.1",
+    "ethers": "^6.13.1",
     "framer-motion": "^11.0.24",
     "lucide-react": "^0.395.0",
     "moment": "^2.30.1",

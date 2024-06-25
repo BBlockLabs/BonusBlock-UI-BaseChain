@@ -16,7 +16,9 @@ import BeforeStartView from './views/BeforeStartView.tsx';
 import ProfileView from './views/ProfileView.tsx';
 import InfoView from './views/InfoView.tsx';
 import ErrorView from './views/ErrorView.tsx';
+import { WalletProvider } from "@coinbase/waas-sdk-web-react";
 
+const PROJECT_ID = process.env.COINBASE_PROJECT_ID; 
 const router = createBrowserRouter([
     {
         path: "/",
@@ -66,7 +68,7 @@ const router = createBrowserRouter([
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+    <WalletProvider projectId={PROJECT_ID} verbose collectAndReportMetrics enableHostedBackups>
       <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
               {/*<Theme>*/}
@@ -74,5 +76,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               {/*</Theme>*/}
           </PersistGate>
       </Provider>
-  </React.StrictMode>,
+  </WalletProvider>,
 )
