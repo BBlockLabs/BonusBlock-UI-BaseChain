@@ -56,7 +56,7 @@ const Content = React.forwardRef<HTMLDivElement, ContentProps>(function (
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.3 }}
                             style={{
-                                backgroundColor: "rgba(0, 0, 0, 0.15)",
+                                backgroundColor: "rgba(0, 0, 0, 0.83)",
                                 position: "fixed",
                                 top: 0,
                                 right: 0,

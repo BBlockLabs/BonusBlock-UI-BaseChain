@@ -4,7 +4,6 @@ import PageHeader from "./PageHeader.tsx";
 import { Drawer } from "./Drawer/index.tsx";
 import Profile from "./Profile.tsx";
 import CancelSVG from '../assets/svg/cancel.svg';
-import XionLogo from '../assets/logo/xion.svg';
 import useMediaQuery from "../hooks/useMediaQuery.tsx";
 
 export interface LayoutProps {
@@ -32,18 +31,18 @@ const Layout:FC<LayoutProps> = ({
         <>
             <Drawer.Root open={isDrawerOpen} onOpenChange={drawerOpen}>
                 <Drawer.Content
-                    className="content bg-black md:bg-black/70 md:backdrop-blur-xl overflow-y-hidden md:border-l md:border-white/40"
+                    className="content bg-black/70 overflow-y-hidden"
                     origin="right"
                     radius={0}
-                    size={isMobile ? '100%' : 480}
+                    size={isMobile ? '100%' : 378}
                     visible={isDrawerOpen}
                 >
                     <div
-                        className={`flex justify-between ${!isMobile && '!justify-end'} items-center px-4 pt-5 pb-7 md:pb-4 bg-black md:bg-inherit border-b border-white/10 md:border-none`}
+                        className="flex justify-between items-center px-6 pt-5 bg-black"
                     >
-                        {isMobile && <XionLogo className="h-8 w-auto" />}
+                        <h2 className="text-white text-xl/[30px] font-medium">Your Account</h2>
                         <Drawer.Close className="outline-none">
-                            <CancelSVG className="drawer-close h-8 w-8" />
+                            <CancelSVG className="drawer-close h-6 w-auto" />
                         </Drawer.Close>
                     </div>
                     <Profile />
@@ -51,7 +50,7 @@ const Layout:FC<LayoutProps> = ({
             </Drawer.Root>
 
             <div
-                className={`mx-auto h-screen flex flex-col px-4 md:px-10 pt-5 bg-landing bg-cover bg-center bg-no-repeat ${overflow}`}
+                className={`mx-auto h-screen flex flex-col bg-landing bg-cover bg-center bg-no-repeat ${overflow}`}
             >
                 <PageHeader onClick={drawerOpen} />
                 <div className="w-full max-w-[1365px] flex-1 self-center">

@@ -15,10 +15,10 @@ const PageHeader:FC<PageHeaderProps> = ({ onClick }) => {
     const isSmallScreen = useMediaQuery('(max-width: 960px)');
 
     // @ts-expect-error isActive = any
-    const getNavLinkClass = ({ isActive }) => `text-sm/4 uppercase tracking-[0.02em] ${isActive && 'underline'}`;
+    const getNavLinkClass = ({ isActive }) => `px-4 py-6 ${isActive && 'text-gold'}`;
 
     return (
-        <header className="flex justify-between items-center text-white">
+        <header className="flex justify-between items-center text-white px-[60px] py-2">
             <BaseChainLogo className="h-8 w-auto"/>
             {isSmallScreen ? (
                 <div className="flex gap-6 items-center">
@@ -29,28 +29,30 @@ const PageHeader:FC<PageHeaderProps> = ({ onClick }) => {
                 </div>
             ) : (
                 <>
-                    <nav className="nav-flex gap-12 items-center space-bg-black rounded-full text-white pl-4 prx-4">
-                    <NavLink to="/home" className={getNavLinkClass}>Quests</NavLink>
-                    <NavLink to="/home" className={getNavLinkClass}>Projects</NavLink>
-                    <NavLink to="/home" className={getNavLinkClass}>Rewards</NavLink>
-                    <NavLink to="/beforestart" className={getNavLinkClass}>Leaderboard</NavLink>
-                    {/* <NavLink to="/bridge" className={getNavLinkClass}>Bridge</NavLink>
-                    <NavLink to="/stake" className={getNavLinkClass}>Stake</NavLink>
-                    <NavLink to="/leaderboard" className={getNavLinkClass}>Leaderboard</NavLink>
-                    <NavLink to="/info" className={getNavLinkClass}>Info</NavLink> */}
+                    <nav
+                        className="nav-flex gap-[53px] items-center space-bg-black rounded-full text-white text-[20px]/[30px] tracking-widest capitalized"
+                    >
+                        <NavLink to="/quests" className={getNavLinkClass}>Quests</NavLink>
+                        <NavLink to="/projects" className={getNavLinkClass}>Projects</NavLink>
+                        <NavLink to="/rewards" className={getNavLinkClass}>Rewards</NavLink>
+                        <NavLink to="/staking" className={getNavLinkClass}>Staking</NavLink>
+                        <NavLink to="/beforestart" className={getNavLinkClass}>Leaderboard</NavLink>
+                        {/* <NavLink to="/bridge" className={getNavLinkClass}>Bridge</NavLink>
+                        <NavLink to="/stake" className={getNavLinkClass}>Stake</NavLink>
+                        <NavLink to="/leaderboard" className={getNavLinkClass}>Leaderboard</NavLink>
+                        <NavLink to="/info" className={getNavLinkClass}>Info</NavLink> */}
                     </nav>
-                    <div className="flex gap-6 items-center">
+                    <div className="flex gap-[10px] items-center">
                         <MetamaskNotifiContextWrapper>
                             <MetamaskCard/>
                         </MetamaskNotifiContextWrapper>
-                        <span
-                            className="text-sm/4 text-electric-lime font-bold uppercase tracking-[-0.01em]"
+                        <div
+                            className="flex gap-[9px] items-center py-1.5 px-4 border border-gold rounded-sm cursor-pointer"
+                            onClick={onClick}
                         >
-                            34,968 pts
-                        </span>
-                        <button onClick={onClick}>
-                            <img src={ProfileImage} alt="Profile" className="rounded-full h-10 w-10"/>
-                        </button>
+                            <span className="text-xs text-white">0x1234567890</span>
+                            <img src={ProfileImage} alt="Profile" className="rounded-full h-6 w-6"/>
+                        </div>
                     </div>
                 </>
             )}

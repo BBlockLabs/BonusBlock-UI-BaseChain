@@ -15,7 +15,7 @@ export const BellButton: FC<BellButtonProps> = ({ setIsCardOpen }) => {
       onClick={() => setIsCardOpen((prev) => !prev)}
       className={style.bellButton}
     >
-      <img width={24} height={24} src="/bell-icon.svg" alt="logo" />
+      <img width={22} height={22} src="/bell-icon.svg" alt="logo" className="text-black" />
       {hasUnreadNotification ? (
         <div className={style.numberBadge}>
           <svg

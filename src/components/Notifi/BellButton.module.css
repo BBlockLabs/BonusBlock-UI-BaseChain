@@ -3,8 +3,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   cursor: pointer;
+  background-color: #F5BF5B;
+  padding: 3px;
 }
 
 .numberBadge {

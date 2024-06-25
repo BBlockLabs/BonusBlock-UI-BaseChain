@@ -1,10 +1,8 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import '@radix-ui/themes/styles.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingView from "./views/LandingView.tsx";
-import HomeView from "./views/HomeView.tsx";
 import LeaderboardView from "./views/LeaderboardView.tsx";
 import LoginView from './views/LoginView.tsx';
 import { Provider } from "react-redux";
@@ -17,6 +15,7 @@ import ProfileView from './views/ProfileView.tsx';
 import InfoView from './views/InfoView.tsx';
 import ErrorView from './views/ErrorView.tsx';
 import { WalletProvider } from "@coinbase/waas-sdk-web-react";
+import QuestsView from './views/QuestsView.tsx';
 
 const PROJECT_ID = process.env.COINBASE_PROJECT_ID; 
 const router = createBrowserRouter([
@@ -33,8 +32,8 @@ const router = createBrowserRouter([
         element: <OnboardingView />,
     },
     {
-        path: "/home",
-        element: <HomeView />,
+        path: "/quests",
+        element: <QuestsView />,
     },
     {
         path: "/bridge",

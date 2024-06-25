@@ -23,7 +23,7 @@ const LandingView = () => {
     }, [isAuthenticated, navigate]); */
 
     const handleLogin = () => {
-        navigate('/login');
+        navigate('/quests');
     }
 
     return (
