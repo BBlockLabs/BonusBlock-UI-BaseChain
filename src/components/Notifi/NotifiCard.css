@@ -1,0 +1,13 @@
+.container {
+  width: 400px;
+  position: relative;
+}
+
+.NotifiSubscriptionCard__container {
+  width: 291px;
+  border-radius: 32px;
+/*  !*background-color: #FFF;*!*/
+  min-height: unset;
+  position: relative;
+  /*overflow: hidden !important;*/
+}

@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  background-color: #000000 !important;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+#root {
+  width: 100% !important;
+  background-color: #000000 !important;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #000000 !important;
+}
+
+.nav-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardFooterButtonWrap {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.referralLinkSpan {
+  overflow: hidden;
+  display: inline-block;
+  max-width: 265px;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bonusBlockLogoFooterWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bonusBlockLogoFooter {
+  width: 100px;
+}
+
+.login-view {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)),
+    url('./assets/login/login_static.png') no-repeat center center/cover,
+    url('./assets/login/login_main.png') no-repeat center center/cover;
+  background-blend-mode: overlay;
+}
+
+.invite-code-background {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
+    url('./assets/login/login_static.png') no-repeat center center/cover,
+    url('./assets/login/login_main.png') no-repeat center center/cover;
+  background-blend-mode: overlay;
+}
+
+.drawer-close > path {
+  stroke: white;
+}
+
+.modal-close > path {
+  stroke: #434040;
+}
+
+.bg-custom-radial {
+  background: radial-gradient(50% 50% at 50% 50%, rgba(51, 0, 255, 0) 0%, #3300FF 100%);
+}
+
+.mint-card-shadow {
+  box-shadow: 0px 0px 16.9px 0px #FFFFFF40;
+}
+
+.modal-shadow {
+  box-shadow: 0px 0px 50px 0px #FFFFFF40;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #333637;
+  }
+}

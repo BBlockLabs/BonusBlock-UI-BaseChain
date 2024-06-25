@@ -1,0 +1,20 @@
+<svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_2031_2493" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="33">
+<path d="M32 0.115234H0V32.1152H32V0.115234Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_2031_2493)">
+<path d="M24.7273 0.115234H7.27273C3.25611 0.115234 0 3.37134 0 7.38796V24.8425C0 28.8591 3.25611 32.1152 7.27273 32.1152H24.7273C28.7439 32.1152 32 28.8591 32 24.8425V7.38796C32 3.37134 28.7439 0.115234 24.7273 0.115234Z" fill="url(#paint0_linear_2031_2493)"/>
+<path d="M24.7273 0.115234H7.27273C3.25611 0.115234 0 3.37134 0 7.38796V24.8425C0 28.8591 3.25611 32.1152 7.27273 32.1152H24.7273C28.7439 32.1152 32 28.8591 32 24.8425V7.38796C32 3.37134 28.7439 0.115234 24.7273 0.115234Z" fill="url(#paint1_radial_2031_2493)"/>
+<path d="M13.0019 24.8425V17.4339L20.0691 24.8425H24.0001V24.6503L15.8722 16.2157L23.3731 8.21138V8.11523H19.4169L13.0019 15.1881V8.11523H9.81824V24.8425H13.0019Z" fill="white"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_2031_2493" x1="21.6364" y1="3.20614" x2="18.7273" y2="34.2971" gradientUnits="userSpaceOnUse">
+<stop stop-color="#02C2E8"/>
+<stop offset="1" stop-color="#283FE3"/>
+</linearGradient>
+<radialGradient id="paint1_radial_2031_2493" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(31.4545 31.2061) rotate(-135.713) scale(30.9865)">
+<stop stop-color="#9171FF"/>
+<stop offset="1" stop-color="#8663FE" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>
