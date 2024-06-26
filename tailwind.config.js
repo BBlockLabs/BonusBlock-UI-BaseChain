@@ -25,8 +25,11 @@ module.exports = {
         foreground: "hsl(var(--foreground))",
         gold: '#F5BF5B',
         blue: '#1B6DDF',
+        buttonBlue: '#003099',
         grayscaleWhite: '#ECEDEE',
         grayscaleDark: '#6C6A6A',
+        "stroke/20": '#EBECFF33',
+        accordionBg: '#383B44',
         walletBtnHoverBg: '#121212EB',
         tagBtnBg: '#181A1E',
         cardBg: '#090A0C',
@@ -75,6 +78,9 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      backgroundImage: {
+        'quests': "url('/src/assets/quests/quests_bg.png')",
       },
     },
   },

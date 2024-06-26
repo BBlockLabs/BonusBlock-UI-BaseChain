@@ -7,9 +7,9 @@ interface PageFooterProps {
     iconColor?: string;
 }
 
-const PageFooter: FC<PageFooterProps> = ({ backgroundColor = 'bg-transparent', textColor = 'text-g900', iconColor = 'text-white-negative' }) => {
+const PageFooter: FC<PageFooterProps> = ({ backgroundColor = 'bg-transparent', textColor = 'text-gray-400', iconColor = 'text-icon' }) => {
     return (
-        <footer className={`pb-[26px] ${backgroundColor}`}>
+        <footer className={`pb-[26px] px-[100px] ${backgroundColor}`}>
             <div className="flex justify-between items-center ">
                 <div className={`${iconColor}`}>
                     <FooterSocials
