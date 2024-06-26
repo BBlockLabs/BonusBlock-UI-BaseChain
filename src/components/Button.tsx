@@ -1,30 +1,35 @@
-export type ButtonVariant = 'primary' | 'outlined' | 'error';
+export type ButtonVariant = 'blue' | 'black' | 'white';
 
 export type ButtonProps = {
     variant?: ButtonVariant;
-    bgColor?: string;
-    className?: string;
+    isLarge?: boolean;
     onClick?: () => void;
     children: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button = ({ variant = 'primary', className, onClick, disabled, children, ...rest }: ButtonProps) => {
+export const Button = ({
+    variant = 'blue',
+    isLarge = false,
+    onClick,
+    children,
+    ...rest
+}: ButtonProps) => {
     const variantStyles = (variant: ButtonVariant) => {
         switch (variant) {
-            case 'primary':
-                return 'bg-white border-white text-black hover:bg-transparent hover:border-white hover:text-white';
-            case 'outlined':
-                return 'bg-transparent border-white/10 text-white hover:border-white';
-            case 'error':
+            case 'blue':
+                return 'bg-buttonBlue hover:bg-blue';
+            case 'black':
+                return 'bg-transparent hover:bg-walletBtnHoverBg';
+            case 'white':
                 return 'bg-transparent text-error !border-error hover:bg-error hover:text-white';
         }
     }
 
-    const disabledStyles = disabled && '!text-g800 !bg-g500 !border-g500 cursor-not-allowed';
+    const sizeStyles = isLarge ? 'text-[18px]/[28px] py-2.5 w-[144px] h-[47px]' : 'text-sm py-1.5 w-[123px] h-8';
 
     return (
         <button
-            className={`px-[60px] py-3 rounded-lg uppercase text-[14px]/[16px] tracking-[0.02em] border ${variantStyles(variant)} ${className} ${disabledStyles}`}
+            className={`rounded-lg border-[0.4px] border-white text-white ${sizeStyles} ${variantStyles(variant)}`}
             onClick={onClick}
             {...rest}
         >

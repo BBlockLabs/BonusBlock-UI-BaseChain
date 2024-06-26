@@ -50,7 +50,7 @@ const Layout:FC<LayoutProps> = ({
             </Drawer.Root>
 
             <div
-                className={`mx-auto h-screen flex flex-col bg-landing bg-cover bg-center bg-no-repeat ${overflow}`}
+                className={`mx-auto h-screen flex flex-col bg-quests bg-cover bg-no-repeat ${overflow}`}
             >
                 <PageHeader onClick={drawerOpen} />
                 <div className="w-full max-w-[1365px] flex-1 self-center">

@@ -1,0 +1,74 @@
+.item {
+  border-radius: 28px;
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 34px;
+  background-color: #383B44;
+  border-radius: 28px;
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.trigger[data-state='open'] {
+  border-bottom: none;
+  background-color: #090A0C;
+}
+
+.trigger-icon > path {
+  fill: #6B767F;
+}
+
+.trigger[data-state='open'] > div > .triangle {
+  transform: rotate(180deg);
+  transition: transform 300ms;
+}
+
+.accordion-content {
+  overflow: hidden;
+  transition: height 500ms ease;
+}
+
+.accordion-content[data-state='open'] {
+  animation: expand 500ms ease forwards;
+}
+
+.accordion-content[data-state='closed'] {
+  animation: collapse 500ms ease forwards;
+}
+
+@keyframes expand {
+  from {
+      height: 0;
+  }
+  to {
+      height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes collapse {
+  from {
+      height: var(--radix-accordion-content-height);
+  }
+  to {
+      height: 0;
+  }
+}
+
+
+.content[data-state='open'] {
+  display: flex;
+  justify-content: space-between;
+  row-gap: 10px;
+  flex-wrap: wrap;
+  padding: 60px 91px 60px;
+  background-color: #090A0C;
+  border-radius: 28px;
+}
+
+.shadow {
+  box-shadow: 3px 5px 0px 0px #D79D31;
+}
