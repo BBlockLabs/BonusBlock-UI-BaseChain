@@ -24,7 +24,7 @@ const Accordion = () => {
                             <Triangle className="triangle w-4 h-4" />
                         </div>
                     </RadixAccordion.Trigger>
-                    <RadixAccordion.Content className="content">
+                    <RadixAccordion.Content className="content AccordionChevron accordion-content">
                         {Array.from({ length: 6 }).map((_, i) => (
                             <QuestCard key={i} />
                         ))}
