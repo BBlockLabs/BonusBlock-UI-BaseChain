@@ -2,8 +2,9 @@ import Coinbase from '../assets/svg/coinbase.svg';
 import Search from '../assets/svg/search.svg';
 import Unicorn from '../assets/svg/unicorn.svg';
 import { useWalletContext, useEVMAddress } from "@coinbase/waas-sdk-web-react";
-import { ConnectButton } from "thirdweb/react";
 import { createThirdwebClient } from "thirdweb";
+import { createWallet } from "thirdweb/wallets";
+import { ConnectButton, AutoConnect } from "thirdweb/react";
 
 export type SmartWalletButtonProps = {
     type?: 'coinbase' | 'search' | 'unicorn';
@@ -22,23 +23,30 @@ const IconPicker = (type: SmartWalletButtonProps['type']) => {
 };
 
 const SmartWalletLoginButton = ({ type = 'coinbase', onClick }: SmartWalletButtonProps) => {
-    console.log(import.meta.env.VITE_THIRDWEB_API_CLIENT_ID, 'potato')
-    const client = createThirdwebClient({ clientId: import.meta.env.VITE_THIRDWEB_API_CLIENT_ID });
-
     return (
-        <button
-            type="button"
-            className="w-[346px] h-[105px] py-4 px-6 rounded border-white border-[0.4px] text-white text-lg bg-transparent hover:bg-walletBtnHoverBg"
-            // onClick={async () => {
-            //     onClick();
-            // }}
-        >
-            <div className="flex items-center justify-center gap-2.5">
-                <ConnectButton client={client} />
-                {IconPicker(type)}
-                Connect with Smart Wallet
-            </div>
-        </button>
+        <ConnectButton
+          client={createThirdwebClient({
+            clientId: import.meta.env.VITE_THIRDWEB_API_CLIENT_ID || "",
+          })}
+          wallets={[createWallet('com.coinbase.wallet')]}
+        />
+        // <button
+        //     disabled={!waas || !!user}
+        //     type="button"
+        //     className="w-[346px] h-[105px] py-4 px-6 rounded border-white border-[0.4px] text-white text-lg bg-transparent hover:bg-walletBtnHoverBg"
+        //     onClick={async () => {
+        //         try {
+        //             await waas!.login();
+        //         } catch (error) {
+        //             onClick();
+        //         }
+        //     }}
+        // >
+        //     <div className="flex items-center justify-center gap-2.5">
+        //         {IconPicker(type)}
+        //         Connect with Smart Wallet
+        //     </div>
+        // </button>
     );
 }
 
