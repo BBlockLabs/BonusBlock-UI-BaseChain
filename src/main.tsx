@@ -16,6 +16,7 @@ import InfoView from './views/InfoView.tsx';
 import ErrorView from './views/ErrorView.tsx';
 import { WalletProvider } from "@coinbase/waas-sdk-web-react";
 import QuestsView from './views/QuestsView.tsx';
+import ProjectsView from './views/ProjectsView.tsx';
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
     {
         path: "/quests",
         element: <QuestsView />,
+    },
+    {
+        path: "/projects",
+        element: <ProjectsView />,
     },
     {
         path: "/bridge",

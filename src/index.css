@@ -89,6 +89,10 @@ body {
   stroke: #434040;
 }
 
+.link-icon > path {
+  fill: #75A1FF;
+}
+
 .bg-custom-radial {
   background: radial-gradient(50% 50% at 50% 50%, rgba(51, 0, 255, 0) 0%, #3300FF 100%);
 }

@@ -9,12 +9,14 @@ import useMediaQuery from "../hooks/useMediaQuery.tsx";
 export interface LayoutProps {
     overflowHidden?: boolean;
     noFooter?: boolean;
+    isFullWidth?: boolean;
     children: ReactNode;
 }
 
 const Layout:FC<LayoutProps> = ({
     overflowHidden,
     noFooter,
+    isFullWidth,
     children
 }) => {
     const isMobile = useMediaQuery('(max-width: 640px)');
@@ -53,7 +55,7 @@ const Layout:FC<LayoutProps> = ({
                 className={`mx-auto h-screen flex flex-col bg-quests bg-cover bg-no-repeat ${overflow}`}
             >
                 <PageHeader onClick={drawerOpen} />
-                <div className="w-full max-w-[1365px] flex-1 self-center">
+                <div className={`w-full ${!isFullWidth && 'max-w-[1365px]'} flex-1 self-center`}>
                     {children}
                 </div>
                 {!noFooter && <PageFooter />}
