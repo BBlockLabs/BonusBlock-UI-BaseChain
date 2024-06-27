@@ -1,28 +1,36 @@
-import Gem1 from '../assets/gems/gem_1.svg';
-import Gem2 from '../assets/gems/gem_2.svg';
-import Gem3 from '../assets/gems/gem_3.svg';
-import Gem4 from '../assets/gems/gem_4.svg';
-import Gem5 from '../assets/gems/gem_5.svg';
-import Gem6 from '../assets/gems/gem_6.svg';
-import Gem7 from '../assets/gems/gem_7.svg';
+import Staker from '../assets/svg/badges/staker.svg';
+import LiquidityProvider from '../assets/svg/badges/liquidityProvider.svg';
+import Hodler from '../assets/svg/badges/hodler.svg';
+import YieldFarmer from '../assets/svg/badges/yieldFarmer.svg';
+import SmolTrader from '../assets/svg/badges/smolTrader.svg';
+import RealTrader from '../assets/svg/badges/realTrader.svg';
+import BasedTrader from '../assets/svg/badges/basedTrader.svg';
 
 interface GemBadgeProps {
     gemNumber: number; // Number from 1 to 7
     xpNumber: number;
+    gemColor?: string;
+    gemBgColor?: string;
+    disabled?: boolean;
 }
 
-const GemBadge: React.FC<GemBadgeProps> = ({ gemNumber, xpNumber }) => {
-    const Gems = [Gem1, Gem2, Gem3, Gem4, Gem5, Gem6, Gem7];
+const GemBadge = ({ gemNumber, xpNumber, gemColor, gemBgColor, disabled }: GemBadgeProps) => {
+    const Gems = [Staker, LiquidityProvider, Hodler, YieldFarmer, SmolTrader, RealTrader, BasedTrader];
 
     const SelectedGem = Gems[gemNumber - 1] || Gems[0];
+    const svgColor = gemColor || 'text-white';
+    const disabledStyle = disabled ? 'opacity-20' : '';
+    const bgColor = gemBgColor || 'bg-cardBg';
 
     return (
-        <div className="flex flex-col items-center justify-center bg-black rounded-full min-w-48 h-48">
-            <SelectedGem className="w-24 h-24 text-yellow-100" />
+        <div
+            className={`flex flex-col items-center justify-center rounded-full min-w-44 h-44 ${bgColor} ${disabledStyle}`}
+        >
+            <SelectedGem className={`w-[92px] h-[92px] text-yellow-100 ${svgColor}`} />
             <div className="text-white text-center mt-1">
-                <span className="text-base font-bold">{xpNumber.toLocaleString()}</span>
+                <span className="text-base/[18px] font-black tracking-[-0.01em]">{xpNumber.toLocaleString()}</span>
                 <br />
-                <span className="text-xs">COMMUNITY XP</span>
+                <span className="text-[9px]/[10px] font-medium tracking-[-0.01em]">COMMUNITY XP</span>
             </div>
         </div>
     );

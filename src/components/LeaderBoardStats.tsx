@@ -1,4 +1,4 @@
-import { Button, Flex } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import {CSSProperties, FC, useState} from "react";
 import Avatar from '../assets/avatars/avatar_2.svg';
 import { InfoCircledIcon } from "@radix-ui/react-icons";
@@ -19,6 +19,7 @@ import CustomMintRequest from "../common/bonusblock_api/CustomMintRequest.ts";
 import {callMintFunction} from "../smart_contracts/KasuNftMinter.ts";
 import NoAccountsError from "../common/errors/NoAccountsError.ts";
 import MintingError from "../common/errors/MintingError.ts";
+import { Button } from "./Button.tsx";
 
 export interface LeaderBoardStatsProps {
     rank: number;
@@ -150,13 +151,10 @@ const LeaderBoardStats: FC<LeaderBoardStatsProps> = (props) => {
         return 10000;
     }
 
-    const color = "#FEA120"
+    const color = "#F5BF5B";
 
     return (
-        <div className="basis-1/2 px-12 grid grid-cols bg-black">
-
-            <ToastContainer containerId="leaderboard"/>
-
+        <div className="grid grid-cols gap-6">
             <PacmanLoader
                 color={color}
                 loading={loading}
@@ -165,60 +163,49 @@ const LeaderBoardStats: FC<LeaderBoardStatsProps> = (props) => {
                 aria-label="Loading Spinner"
                 data-testid="loader"
             />
-
-            <div className="flex flex-row items-center space-x-2 font-bold">
-                <Avatar/>
-                <div className="basis-1 text-xl text-orange-500">
+            <div className="flex flex-row items-center space-x-3">
+                <Avatar className="w-12 h-12 rounded-full" />
+                <p className="text-2xl text-gold font-medium">
                     {userName}
-                </div>
+                </p>
             </div>
-
-            <div className="flex flex-row text-white">
+            <div className="flex flex-row">
                 <div className="basis-1/2">
-                    <div>
+                    <p className="text-white mb-1">
                         Your rank
-                    </div>
-
-                    <div className="font-bold text-2xl">
+                    </p>
+                    <span className="font-medium text-[28px]/[28px] text-white">
                         # {rank}
-                    </div>
+                    </span>
                 </div>
-
-
                 <div className="basis-1/2">
-                    <div>
+                    <p className="text-white mb-1">
                         Your xp
-                    </div>
-
-                    <div className="font-bold text-2xl">
+                    </p>
+                    <span className="font-medium text-[28px]/[28px] text-white">
                         {xpNumber.toLocaleString()}
-                    </div>
+                    </span>
                 </div>
             </div>
-
-            <div className="flex flex-row text-white">
+            <div className="flex flex-row">
                 <div className="basis-1/2">
-                    <div>
+                    <p className="text-white mb-1">
                         Completed Missions
-                    </div>
-
-                    <div className="font-bold text-2xl">
+                    </p>
+                    <span className="font-medium text-[28px]/[28px] text-white">
                         {completedMissionCount.toLocaleString()}
-                    </div>
+                    </span>
                 </div>
-
                 <div className="basis-1/2">
-                    <div>
+                    <p className="text-white mb-1">
                         Your top DApp
-                    </div>
-
-                    <div className="font-bold text-2xl">
+                    </p>
+                    <span className="font-bold text-[28px]/[28px] text-white">
                         {yourTopDApp}
-                    </div>
+                    </span>
                 </div>
             </div>
-
-            <div className="flex flex-row items-center text-xs  text-white">
+            <div className="flex flex-row items-center mt-14 text-sm space-x-1.5 text-blue">
                 <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
                     <Dialog.Trigger asChild>
                         <button><InfoCircledIcon height="16" width="16"/></button>
@@ -230,40 +217,47 @@ const LeaderBoardStats: FC<LeaderBoardStatsProps> = (props) => {
                             <Dialog.Title className="text-white font-bold text-center">How calculations work?</Dialog.Title>
                             <img src={XPCalImage} alt="XP Calculation" className="my-4 w-full max-w-xs mx-auto"/>
                             <div className="text-sm break-words text-white">
-                                Accomplish missions to earn <span className="font-bold text-orange-500">Community XP</span>, which will elevate your rank as you gain more experience.
+                                Accomplish missions to earn <span className="font-bold text-gold">Community XP</span>, which will elevate your rank as you gain more experience.
                             </div>
 
                             <div className="text-sm break-words mt-4 text-white">
-                                <span className="font-bold text-orange-500">Community XP</span> serves the additional purpose of unlocking various community badges!
+                                <span className="font-bold text-gold">Community XP</span> serves the additional purpose of unlocking various community badges!
                             </div>
                             <div className="mt-4 text-center">
-                                <Dialog.Close className="px-4 text-orange-500 border border-orange-500 rounded h-9">
+                                <Dialog.Close className="px-4 text-gold border border-gold rounded h-9">
                                     <button>Close</button>
                                 </Dialog.Close>
                             </div>
                         </div>
                     </Dialog.Portal>
                 </Dialog.Root>
-                <span className="ml-1">Repeating missions allows you to accumulate Community XP</span>
+                <span className="">Repeating missions allows you to accumulate Community XP</span>
             </div>
 
-            <div className="flex flex-row text-white">
-                <div className="basis-1/2">
-                    <div>
-                        Mint Badge Progress
-                    </div>
-                    <div>
+            <div className="flex justify-between gap-6">
+                <div>
+                    <p className="text-sm text-white mb-1">
+                        Mint Collection Progress
+                    </p>
+                    <span className="text-blue text-sm font-medium">
                         {xpNumber.toLocaleString()} / {getNextBadgeXp(xpNumber).toLocaleString()} XP
-                    </div>
+                    </span>
                 </div>
-
-                <div className="flex basis-1/2">
+                <div className="flex items-center gap-3">
+                    <Button variant="black" isLarge>
+                        Share mint
+                    </Button>
+                    <Button variant="blue" isLarge>
+                        Mint badge
+                    </Button>
+                </div>
+                {/* <div className="flex basis-1/2">
                     <Flex align="center" gap="3">
                         <Button className="absolute box-border h-8 w-25 p-4 border py-1 px-1 rounded full m-20">
                             <Dialog.Root open={mintBadgeDialogOpen} onOpenChange={setMintBadgeDialogOpen}>
                                 {mintBadgeDialogOpen &&
                                     <Dialog.Trigger asChild>
-                                        <button disabled className="border border-orange-500 text-orange-500 text-xs p-2 rounded-lg">Mint Badge</button>
+                                        <button disabled className="border border-gold text-gold text-xs p-2 rounded-lg">Mint Badge</button>
                                     </Dialog.Trigger>
                                 }
 
@@ -289,11 +283,11 @@ const LeaderBoardStats: FC<LeaderBoardStatsProps> = (props) => {
                                         </div>
 
                                         <div className="mt-4 text-center">
-                                            <Dialog.Close className="px-4 mx-2 text-orange-500 border border-orange-500 rounded h-9 w-20">
+                                            <Dialog.Close className="px-4 mx-2 text-gold border border-gold rounded h-9 w-20">
                                                 <button onClick={() => newBadgeAcknowledgeHandler()}>Close</button>
                                             </Dialog.Close>
 
-                                            <Dialog.Close className="px-4 mx-2 text-white bg-orange-500 rounded h-9 w-20">
+                                            <Dialog.Close className="px-4 mx-2 text-white bg-gold rounded h-9 w-20">
                                                 <button onClick={() => badgeMintHandler()}>Mint</button>
                                             </Dialog.Close>
                                         </div>
@@ -302,7 +296,7 @@ const LeaderBoardStats: FC<LeaderBoardStatsProps> = (props) => {
                             </Dialog.Root>
                         </Button>
                     </Flex>
-                </div>
+                </div> */}
             </div>
         </div>
     );

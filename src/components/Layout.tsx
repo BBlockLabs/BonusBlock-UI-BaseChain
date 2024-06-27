@@ -9,6 +9,7 @@ import useMediaQuery from "../hooks/useMediaQuery.tsx";
 export interface LayoutProps {
     overflowHidden?: boolean;
     noFooter?: boolean;
+    footerBgColor?: string;
     isFullWidth?: boolean;
     children: ReactNode;
 }
@@ -16,6 +17,7 @@ export interface LayoutProps {
 const Layout:FC<LayoutProps> = ({
     overflowHidden,
     noFooter,
+    footerBgColor,
     isFullWidth,
     children
 }) => {
@@ -58,7 +60,7 @@ const Layout:FC<LayoutProps> = ({
                 <div className={`w-full ${!isFullWidth && 'max-w-[1365px]'} flex-1 self-center`}>
                     {children}
                 </div>
-                {!noFooter && <PageFooter />}
+                {!noFooter && <PageFooter backgroundColor={footerBgColor} />}
             </div>
         </>
     );

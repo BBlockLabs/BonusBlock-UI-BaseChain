@@ -93,6 +93,14 @@ body {
   fill: #75A1FF;
 }
 
+.filled-ellips > circle {
+  fill: #1B6DDF;
+}
+
+.empty-ellips > circle {
+  fill: #545865;
+}
+
 .bg-custom-radial {
   background: radial-gradient(50% 50% at 50% 50%, rgba(51, 0, 255, 0) 0%, #3300FF 100%);
 }
@@ -111,6 +119,10 @@ body {
 
 .socials-shadow {
   box-shadow: 3px 1px 0px 0px #D79D31;
+}
+
+.rt-ProgressIndicator {
+  background-color: #1B6DDF !important;
 }
 
 @media (prefers-color-scheme: light) {

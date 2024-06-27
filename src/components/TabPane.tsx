@@ -12,38 +12,33 @@ const TabPane: FC<TabPaneProps> = (props) => {
 
     const { leaderBoardData } = props;
 
-    const [activeTab, setActiveTab] = useState('leaderboard');
+    const [activeTab, setActiveTab] = useState<'leaderboard' | 'mints'>('leaderboard');
 
     return (
         <div className="flex flex-col items-center mx-24">
             <div className="w-full bg-dark-gray rounded-full">
-                <div className="flex justify-center rounded-full bg-dark-gray p-2">
+                <div className="flex justify-center rounded-full bg-cardBg p-2">
                     <button
-                        className={`flex-1 py-2 rounded-full ${activeTab === 'badges' ? 'bg-orange-500 text-white' : 'text-white'}`}
-                        onClick={() => setActiveTab('badges')}
+                        className={`flex-1 py-2 rounded-full text-white text-2xl font-medium ${activeTab === 'mints' && 'bg-blue'}`}
+                        onClick={() => setActiveTab('mints')}
                     >
-                        Your Badges
+                        Mints
                     </button>
                     <button
-                        className={`flex-1 py-2 rounded-full ${activeTab === 'leaderboard' ? 'bg-orange-500 text-white' : 'text-white'}`}
+                        className={`flex-1 py-2 rounded-full text-white text-2xl font-medium ${activeTab === 'leaderboard' && 'bg-blue'}`}
                         onClick={() => setActiveTab('leaderboard')}
                     >
                         Leaderboard
                     </button>
                 </div>
             </div>
-            <div className="p-4 rounded-b-lg w-full">
-                {activeTab === 'badges' && (
-                    <div className="flex justify-around">
-                        <Badges score={props.score}
-                        />
-                    </div>
+            <div className="my-8 w-full border-b border-statsBg" />
+            <div className="w-full">
+                {activeTab === 'mints' && (
+                    <Badges score={props.score} />
                 )}
                 {activeTab === 'leaderboard' && (
-                    <div>
-                        <LeaderboardTable leaderboardData={leaderBoardData}
-                        />
-                    </div>
+                    <LeaderboardTable leaderboardData={leaderBoardData} />
                 )}
             </div>
         </div>

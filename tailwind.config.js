@@ -38,7 +38,9 @@ module.exports = {
         cardText: '#F1F1F1',
         modalBg: '#414141',
         projectsBg: '#1E1E1EAD',
+        statsBg: '#1E20258F',
         icon: '#CBCFD2',
+        leaderboardIcon: '#202327',
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -84,6 +86,7 @@ module.exports = {
       },
       backgroundImage: {
         'quests': "url('/src/assets/quests/quests_bg.png')",
+        'leaderboard': "url('/src/assets/images/leaderboard_bg.png')",
       },
     },
   },
