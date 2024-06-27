@@ -1,0 +1,42 @@
+.rainbow-button {
+    background: transparent;
+    border: 2px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Shadow */
+    transition: all 0.3s ease;
+    outline: none; /* Remove default outline */
+}
+
+.rainbow-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.rainbow-button:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.rainbow-button:active {
+    border: 2px solid #fff; /* Change to solid white border on click */
+}
+
+.rainbow-button:active:before {
+    background: none; /* Remove the rainbow background on click */
+}

@@ -14,9 +14,11 @@ import BeforeStartView from './views/BeforeStartView.tsx';
 import ProfileView from './views/ProfileView.tsx';
 import InfoView from './views/InfoView.tsx';
 import ErrorView from './views/ErrorView.tsx';
-import { WalletProvider } from "@coinbase/waas-sdk-web-react";
 import QuestsView from './views/QuestsView.tsx';
 import ProjectsView from './views/ProjectsView.tsx';
+import ConnectWalletView from './views/ConnectWalletView.tsx';
+
+import { ThirdwebProvider } from "thirdweb/react";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +28,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <LoginView />,
+    },
+    {
+        path: "/connectwallet",
+        element: <ConnectWalletView />,
     },
     {
         path: "/onboarding",
@@ -71,7 +77,7 @@ const router = createBrowserRouter([
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <WalletProvider projectId={import.meta.env.VITE_COINBASE_PROJECT_ID} verbose collectAndReportMetrics enableHostedBackups>
+    <ThirdwebProvider>
       <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
               {/*<Theme>*/}
@@ -79,5 +85,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               {/*</Theme>*/}
           </PersistGate>
       </Provider>
-  </WalletProvider>,
+  </ThirdwebProvider>,
 )

@@ -20,19 +20,12 @@ const IconPicker = (type: SmartWalletButtonProps['type']) => {
 };
 
 const SmartWalletLoginButton = ({ type = 'coinbase', onClick }: SmartWalletButtonProps) => {
-    const { waas, user } = useWalletContext();
-
     return (
         <button
-            disabled={!waas || !!user}
             type="button"
             className="w-[346px] h-[105px] py-4 px-6 rounded border-white border-[0.4px] text-white text-lg bg-transparent hover:bg-walletBtnHoverBg"
             onClick={async () => {
-                try {
-                    await waas!.login();
-                } catch (error) {
-                    onClick();
-                }
+              onClick();                
             }}
         >
             <div className="flex items-center justify-center gap-2.5">
