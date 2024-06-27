@@ -8,17 +8,13 @@ import LoginView from './views/LoginView.tsx';
 import { Provider } from "react-redux";
 import { store, persistor } from "../src/store/store.ts";
 import { PersistGate } from "redux-persist/integration/react";
-import OnboardingView from './views/OnboardingView.tsx';
-import BridgeView from './views/BridgeView.tsx';
 import BeforeStartView from './views/BeforeStartView.tsx';
-import ProfileView from './views/ProfileView.tsx';
-import InfoView from './views/InfoView.tsx';
-import ErrorView from './views/ErrorView.tsx';
 import QuestsView from './views/QuestsView.tsx';
 import ProjectsView from './views/ProjectsView.tsx';
 import ConnectWalletView from './views/ConnectWalletView.tsx';
 
 import { ThirdwebProvider } from "thirdweb/react";
+import StakingView from './views/StakingView.tsx';
 
 const router = createBrowserRouter([
     {
@@ -34,10 +30,6 @@ const router = createBrowserRouter([
         element: <ConnectWalletView />,
     },
     {
-        path: "/onboarding",
-        element: <OnboardingView />,
-    },
-    {
         path: "/quests",
         element: <QuestsView />,
     },
@@ -46,33 +38,17 @@ const router = createBrowserRouter([
         element: <ProjectsView />,
     },
     {
-        path: "/bridge",
-        element: <BridgeView />,
-    },
-    {
         path: "/beforestart",
         element: <BeforeStartView />,
     },
     {
-        path: '/stake',
-        element: <BridgeView />,
-    },
-    {
-        path: "/profile",
-        element: <ProfileView />,
+        path: '/staking',
+        element: <StakingView />,
     },
     {
         path: "/leaderboard",
         element: <LeaderboardView />
     },
-    {
-        path: "/info",
-        element: <InfoView />
-    },
-    {
-        path: "/error",
-        element: <ErrorView />
-    }
 ]);
 
 

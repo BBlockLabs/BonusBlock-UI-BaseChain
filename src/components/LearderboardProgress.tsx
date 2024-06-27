@@ -10,8 +10,8 @@ const LeaderBoardProgress = () => {
                 <GemBadge gemNumber={2} xpNumber={10000} gemColor="text-white" disabled />
             </div>
             <Box className="w-full relative">
-                <Ellips className="filled-ellips absolute -top-[3px] left-[21%] w-[12px] h-[12px] z-10"/>
-                <Ellips className="empty-ellips absolute -top-[3px] left-[77%] w-[12px] h-[12px] z-10"/>
+                <Ellips className="filled-ellips absolute -top-[3px] left-[21%] w-[12px] h-[12px] z-0"/>
+                <Ellips className="empty-ellips absolute -top-[3px] left-[77%] w-[12px] h-[12px] z-0"/>
                 <Progress
                     style={{ height: '6px', backgroundColor: "#545865" }}
                     variant="classic"

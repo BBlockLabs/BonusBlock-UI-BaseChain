@@ -1,24 +1,24 @@
-import { Flex } from "@radix-ui/themes";
+// import { Flex } from "@radix-ui/themes";
 import {CSSProperties, FC, useState} from "react";
 import Avatar from '../assets/avatars/avatar_2.svg';
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 import * as Dialog from '@radix-ui/react-dialog';
 import XPCalImage from '../assets/xp_cal.png';
-import YourBadge from "./YourBadge.tsx";
+// import YourBadge from "./YourBadge.tsx";
 import {useSelector} from "react-redux";
 import {RootState} from "../store/store.ts";
 import {getNextBadgeXp} from "../utils/badgeHelpers.ts";
-import {useNewBadgeAcknowledge} from "../hooks/useNewBadgeAcknowledge.ts";
-import {Bounce, toast, ToastContainer} from "react-toastify";
+// import {useNewBadgeAcknowledge} from "../hooks/useNewBadgeAcknowledge.ts";
+// import {Bounce, toast, ToastContainer} from "react-toastify";
 import {PacmanLoader} from "react-spinners";
-import {useBadgeInit} from "../hooks/useBadgeInit.ts";
-import {useBadgeOk} from "../hooks/useBadgeOk.ts";
-import {ethers} from "ethers";
-import CustomMintRequest from "../common/bonusblock_api/CustomMintRequest.ts";
-import {callMintFunction} from "../smart_contracts/KasuNftMinter.ts";
-import NoAccountsError from "../common/errors/NoAccountsError.ts";
-import MintingError from "../common/errors/MintingError.ts";
+// import {useBadgeInit} from "../hooks/useBadgeInit.ts";
+// import {useBadgeOk} from "../hooks/useBadgeOk.ts";
+// import {ethers} from "ethers";
+// import CustomMintRequest from "../common/bonusblock_api/CustomMintRequest.ts";
+// import {callMintFunction} from "../smart_contracts/KasuNftMinter.ts";
+// import NoAccountsError from "../common/errors/NoAccountsError.ts";
+// import MintingError from "../common/errors/MintingError.ts";
 import { Button } from "./Button.tsx";
 
 export interface LeaderBoardStatsProps {
@@ -41,15 +41,15 @@ const override: CSSProperties = {
 
 const LeaderBoardStats: FC<LeaderBoardStatsProps> = (props) => {
 
-    const { rank, xpNumber, completedMissionCount, yourTopDApp, newBadgeDialogOpen } = props;
+    const { rank, xpNumber, completedMissionCount, yourTopDApp } = props;
 
     // const xpNumber = 10000;
     const [dialogOpen, setDialogOpen] = useState(false);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [mintBadgeDialogOpen, setMintBadgeDialogOpen] = useState(newBadgeDialogOpen);
+    const [loading] = useState<boolean>(false);
+    // const [mintBadgeDialogOpen, setMintBadgeDialogOpen] = useState(newBadgeDialogOpen);
     const userName = useSelector((state: RootState) => state.login.user?.account.userId || 'User');
 
-    const walletAddress = useSelector((state: RootState) => state.login.user?.account.wallets[0].address || 'invalid');
+/*     const walletAddress = useSelector((state: RootState) => state.login.user?.account.wallets[0].address || 'invalid');
 
 
     const { acknowledgeNewBadge } = useNewBadgeAcknowledge();
@@ -64,9 +64,9 @@ const LeaderBoardStats: FC<LeaderBoardStatsProps> = (props) => {
     const calculateMessageHash = (cmr: CustomMintRequest) => {
         const btyes = ethers.toUtf8Bytes(cmr.nonce);
         return ethers.keccak256(btyes);
-    }
+    } */
 
-    const badgeMintHandler = async () => {
+ /*    const badgeMintHandler = async () => {
         setLoading(true);
 
         const nonce = ethers.randomBytes(32).toString();
@@ -117,9 +117,9 @@ const LeaderBoardStats: FC<LeaderBoardStatsProps> = (props) => {
         }
 
 
-    }
+    } */
 
-    const getBadgeTitle = () => {
+/*     const getBadgeTitle = () => {
         if (xpNumber < 2000) {
             return 'A NEW JOURNEY';
         }
@@ -149,7 +149,7 @@ const LeaderBoardStats: FC<LeaderBoardStatsProps> = (props) => {
         }
 
         return 10000;
-    }
+    } */
 
     const color = "#F5BF5B";
 
