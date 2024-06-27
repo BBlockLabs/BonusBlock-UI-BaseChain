@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './RainbowButton.css';
+import RainbowButtonBg from '../../assets/svg/rainbowbuttonBackground.svg';
 
 interface RainbowButtonProps {
   text: string;
@@ -7,13 +8,26 @@ interface RainbowButtonProps {
 }
 
 const RainbowButton: React.FC<RainbowButtonProps> = ({ text, onClick }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked(true);
+    onClick();
+  };
+
   return (
-    <button
-      onClick={onClick}
-      className='rainbow-button'
+    <div className={`rainbow-button-wrapper ${isClicked ? 'clicked' : ''}`}>
+      <div
+        className='rainbow-background'
+        style={{ backgroundImage: `url(${RainbowButtonBg})` }}
+      ></div>
+      <button
+        onClick={handleClick}
+        className='rainbow-button'
       >
-      {text}
-    </button>
+        {text}
+      </button>
+    </div>
   );
 };
 
