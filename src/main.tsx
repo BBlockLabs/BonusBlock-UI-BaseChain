@@ -14,8 +14,8 @@ import BeforeStartView from './views/BeforeStartView.tsx';
 import ProfileView from './views/ProfileView.tsx';
 import InfoView from './views/InfoView.tsx';
 import ErrorView from './views/ErrorView.tsx';
-// import { WalletProvider } from "@coinbase/waas-sdk-web-react";
 import QuestsView from './views/QuestsView.tsx';
+import ConnectWalletView from './views/ConnectWalletView.tsx';
 
 import { ThirdwebProvider } from "thirdweb/react";
 
@@ -27,6 +27,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <LoginView />,
+    },
+    {
+        path: "/connectwallet",
+        element: <ConnectWalletView />,
     },
     {
         path: "/onboarding",

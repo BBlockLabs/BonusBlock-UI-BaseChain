@@ -12,6 +12,7 @@
   "dependencies": {
     "@coinbase/waas-sdk-web-react": "^3.2.2",
     "@coinbase/wallet-sdk": "^4.0.4",
+    "@metamask/sdk-react": "^0.26.3",
     "@notifi-network/notifi-core": "^0.90.9-alpha.17",
     "@notifi-network/notifi-frontend-client": "^0.90.9-alpha.17",
     "@notifi-network/notifi-react-card": "^0.90.9-alpha.17",
@@ -42,6 +43,7 @@
     "tailwindcss-animate": "^1.0.7",
     "thirdweb": "^5.29.6",
     "vite-plugin-svgr": "^4.2.0",
+    "walletlink": "^2.5.0",
     "web3": "^4.8.0"
   },
   "devDependencies": {
