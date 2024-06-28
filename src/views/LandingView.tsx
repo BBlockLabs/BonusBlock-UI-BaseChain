@@ -8,6 +8,7 @@ import CoinFalling from '../assets/svg/coinFalling.svg';
 import { SmartWalletLoginButton } from "@/components/SmartWalletButton.tsx";
 import InviteCodeModal from "@/components/InviteCodeModal.tsx";
 import { useState } from "react";
+import backgroundAnimation from '../assets/project/baseChainBackground.gif';
 
 const tags = ['Memes', 'RWA', 'DeFi', 'NFTs'];
 
@@ -28,6 +29,11 @@ const LandingView = () => {
 
     return (
         <div
+            style={{  
+                backgroundImage: `url(${backgroundAnimation})`,
+                backgroundSize: '90%',  
+                backgroundPosition: 'top'      
+            }}
             className="flex flex-col p-4 px-[54px] lg:py-7 min-h-screen bg-cover bg-center bg-no-repeat bg-landing-mobile lg:bg-landing"
         >
             <div>

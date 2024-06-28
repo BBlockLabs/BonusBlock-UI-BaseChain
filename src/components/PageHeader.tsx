@@ -34,7 +34,6 @@ const PageHeader:FC<PageHeaderProps> = ({ onClick }) => {
                     >
                         <NavLink to="/quests" className={getNavLinkClass}>Quests</NavLink>
                         <NavLink to="/projects" className={getNavLinkClass}>Projects</NavLink>
-                        <NavLink to="/rewards" className={getNavLinkClass}>Rewards</NavLink>
                         <NavLink to="/staking" className={getNavLinkClass}>Staking</NavLink>
                         <NavLink to="/leaderboard" className={getNavLinkClass}>Leaderboard</NavLink>
                         {/* <NavLink to="/bridge" className={getNavLinkClass}>Bridge</NavLink>
