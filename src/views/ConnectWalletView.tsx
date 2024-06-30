@@ -6,13 +6,31 @@ import MetaMaskButton from "../assets/svg/metamask-button.svg";
 import { useWalletContext, useEVMAddress  } from '@coinbase/waas-sdk-web-react';
 import StarBG from "../assets/star-background.png";
 import StarBGR from "../assets/star-background-right.png";
+import { useSDK } from "@metamask/sdk-react";
+import { useAxios } from "@/hooks/useAxios.ts";
+import { EthLoginRequest } from "@/common/bonusblock_api/EthLoginRequest.ts";
+import { LoginResponse } from "@/common/bonusblock_api/dto/LoginResponseDto.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { ApiResponseDto } from "@/common/bonusblock_api/dto/ApiResponseDto.ts";
+import { setLoginFailure, setLoginSuccess } from "@/store/loginSlice.ts";
+import { RootState } from "@/store/store.ts";
+import { useEffect } from "react";
 
 
 const ConnectWalletView = () => {
 
     const navigate = useNavigate();
+    const { fetchData } = useAxios();
+    const dispatch = useDispatch();
 
-    const { waas, user } = useWalletContext();    
+    const { waas, user } = useWalletContext();  
+    const { sdk, connected, connecting, provider, chainId } = useSDK();  
+
+    const userId = useSelector((state: RootState) => state.login.user?.account.userId);
+
+    useEffect(()=>{
+        if (userId) navigate('/quests');
+    }, [userId])
 
     const handleSmartWalletClick = () => { 
         navigate('/quests');
@@ -28,6 +46,68 @@ const ConnectWalletView = () => {
         }
         return null
     };
+
+    const handleMetamaskLogin = async () => {
+        try {
+            if (!sdk) throw 'Metamask SDK is undefined'
+
+            const nonce = 'TODO';
+            const authTicketResponse = await getAuthTicket(nonce);
+            if (!authTicketResponse.success) {
+                throw "Failed to get auth ticket";
+            }
+
+            const signedMessage = await sdk.connectAndSign({
+                msg: authTicketResponse.payload,
+            });
+
+            const loginResponse = await finishLogin({
+                nonce,
+                signedMessage,
+                blockchainName: 'Base'
+            });
+            console.log('loginResponse', loginResponse)
+
+            if (loginResponse.success) {
+                dispatch(setLoginSuccess(loginResponse.payload));
+            } else {
+                throw "Failed to authenticate";
+            }
+        
+            navigate('/quests');
+        } catch (error: any) {
+            console.error('Failed to connect wallet:', error);
+            dispatch(setLoginFailure(error.toString()));
+        }
+    }
+
+    const getAuthTicket = async (nonce: string): Promise<ApiResponseDto<string>> => {
+        // TODO use the Base endpoint when it's available
+        const response: ApiResponseDto<string> = await fetchData({
+            url: `auth/get-auth-ticket`,
+            method: 'POST',
+            data: {
+                nonce,
+            },
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        return response;
+    }
+
+    const finishLogin = async (request: EthLoginRequest): Promise<ApiResponseDto<LoginResponse>> => {
+        // TODO use the Base endpoint when it's available
+        const response: ApiResponseDto<LoginResponse> = await fetchData({
+            url: `auth/eth`,
+            method: 'POST',
+            data: request,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        return response;
+    }
 
     return (
         <Layout noFooter>
@@ -53,7 +133,7 @@ const ConnectWalletView = () => {
                     {/* <ConnectMetaMask onClick={handleMetaMaskClick} /> */}
                 </div>
                     <div className="flex align-middle">
-                        <button onClick={() => navigate('/quests')} className="max-w-13 mx-auto mt-2 align-middle">
+                        <button onClick={handleMetamaskLogin} className="max-w-13 mx-auto mt-2 align-middle">
                             <MetaMaskButton />
                         </button>
                     </div>

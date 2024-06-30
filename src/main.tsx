@@ -15,6 +15,8 @@ import ConnectWalletView from './views/ConnectWalletView.tsx';
 
 import { ThirdwebProvider } from "thirdweb/react";
 import StakingView from './views/StakingView.tsx';
+import { MetaMaskProvider } from '@metamask/sdk-react';
+import { WalletProvider } from '@coinbase/waas-sdk-web-react';
 
 const router = createBrowserRouter([
     {
@@ -56,9 +58,23 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ThirdwebProvider>
       <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-              {/*<Theme>*/}
+            <WalletProvider projectId={import.meta.env.VITE_COINBASE_PROJECT_ID} verbose collectAndReportMetrics enableHostedBackups>
+              <MetaMaskProvider
+                debug={false}
+                sdkOptions={{
+                  dappMetadata: {
+                    name: "BaseChain x BonusBlock",
+                    url: window.location.href,
+                  },
+                  infuraAPIKey: import.meta.env.VITE_INFURA_API_KEY,
+                  // Other options.
+                }}
+              >
+                {/*<Theme>*/}
                   <RouterProvider router={router} />
-              {/*</Theme>*/}
+                {/*</Theme>*/}
+              </MetaMaskProvider>
+            </WalletProvider>
           </PersistGate>
       </Provider>
   </ThirdwebProvider>,
