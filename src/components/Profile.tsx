@@ -8,17 +8,14 @@ import {Bounce, toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import { useWalletContext, useEVMAddress } from "@coinbase/waas-sdk-web-react";
 import Pencil from '../assets/svg/pencil.svg';
-import TwitterIcon from '../assets/socials/twitter_X.svg';
-import TelegramIcon from '../assets/socials/telegram.svg';
-import DiscordIcon from '../assets/socials/discord.svg';
-import RedditIcon from '../assets/socials/reddit.svg';
 import Cash from '../assets/svg/cash.svg';
 import LogOut from '../assets/svg/logout.svg';
+import ProfileSocials from './ProfileSocials.tsx';
 
 const Profile = () => {
     const { performLogout } = useLogout();
 
-    const userId = useSelector((state: RootState) => state.login.user?.account.userId || {});
+    const userId = useSelector((state: RootState) => state.login.user?.account.userId || 'User');
     const referralUrl = `${window.location.origin}?r=${userId}`;
     // const shortenedReferralUrl = referralUrl.slice(0, 6) + '...' + referralUrl.slice(-6);
 
@@ -47,7 +44,7 @@ const Profile = () => {
             <div className="flex flex-col items-center justify-between mb-5">
                 <img src={ProfileImage} alt="Profile" className="w-[250px] h-[250px]" />
                 <div className="flex items-center gap-2 mt-4">
-                    <p className="text-blue text-[20px]/[30px] font-medium">userId</p>
+                    <p className="text-blue text-[20px]/[30px] font-medium">{userId}</p>
                     <button onClick={() => {}} aria-label="Edit profile">
                         <Pencil className="h-5 w-5 text-white" />
                     </button>
@@ -76,24 +73,7 @@ const Profile = () => {
                     <span className="text-[40px]/[36px] text-gold font-medium tracking-[-0.03em]">#5,612</span>
                 </div>
                 <p className="mt-6 mb-4 text-white font-medium">Social Media</p>
-                <div className="flex flex-col gap-2">
-                    <button className="socials-shadow flex items-center justify-between py-2 px-3 border-[0.5px] border-white rounded-lg">
-                        <span className="text-white">Connect Twitter</span>
-                        <TwitterIcon className="h-5 w-5 text-white" />
-                    </button>
-                    <button className="socials-shadow flex items-center justify-between py-2 px-3 border-[0.5px] border-white rounded-lg">
-                        <span className="text-white">Connect Telegram</span>
-                        <TelegramIcon className="h-5 w-5 text-white" />
-                    </button>
-                    <button className="socials-shadow flex items-center justify-between py-2 px-3 border-[0.5px] border-white rounded-lg">
-                        <span className="text-white">Connect Discord</span>
-                        <DiscordIcon className="h-5 w-5 text-white" />
-                    </button>
-                    <button className="socials-shadow flex items-center justify-between py-2 px-3 border-[0.5px] border-white rounded-lg">
-                        <span className="text-white">Connect Reddit</span>
-                        <RedditIcon className="h-5 w-5 text-white" />
-                    </button>
-                </div>
+                <ProfileSocials socials={['twitter', 'telegram', 'discord', 'reddit']} />
                 <button className="self-center flex items-center gap-[10px] mt-5 px-[19px] py-1.5 border-[0.4px] border-white rounded-lg">
                     <Cash className="h-6 w-6" />
                     <span className="text-sm text-white font-medium">Claim Pending Rewards</span>

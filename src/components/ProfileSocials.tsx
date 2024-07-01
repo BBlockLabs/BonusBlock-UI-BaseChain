@@ -1,12 +1,13 @@
 import { CSSProperties, FC, useState } from 'react';
 import TwitterX from "../assets/socials/twitter_X.svg";
 import Discord from "../assets/socials/discord.svg";
-// import Telegram from "../assets/socials/telegram.svg";
+import Telegram from "../assets/socials/telegram.svg";
+import Reddit from '../assets/socials/reddit.svg';
 import { useAxios } from "../hooks/useAxios.ts";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store.ts";
-import { LinkBreak1Icon } from '@radix-ui/react-icons';
 import { CircleLoader } from "react-spinners";
+import ProfileSocialButton from './ProfileSocialButton.tsx';
 
 const override: CSSProperties = {
     position: 'absolute',
@@ -18,8 +19,10 @@ const override: CSSProperties = {
     zIndex: 1000,
 };
 
+export type SocialNetwork = 'twitter' | 'telegram' | 'discord' | 'reddit';
+
 export interface ProfileSocialsProps {
-    socials: Array<string>;
+    socials: Array<SocialNetwork>;
 }
 
 const ProfileSocials:FC<ProfileSocialsProps> = (props) => {
@@ -40,7 +43,7 @@ const ProfileSocials:FC<ProfileSocialsProps> = (props) => {
         return metadata.DISCORD_USERNAME || '';
     }
 
-    const linkSocial = async (linkAction: string) => {
+    const linkSocial = async (linkAction: SocialNetwork) => {
         if (linkAction === "twitter") {
             if (getTwitterUsername() !== '') {
                 return;
@@ -57,6 +60,7 @@ const ProfileSocials:FC<ProfileSocialsProps> = (props) => {
                   if (!data) {
                     // authorization failed
                     alert("failed to connect Telegram");
+                    setLoading(false);
                     return;
                   }
                   verifyAndUpdateTelegramData(data);
@@ -80,12 +84,12 @@ const ProfileSocials:FC<ProfileSocialsProps> = (props) => {
                     },
                 });
                 if (response.success) {
-                    setLoading(false);
                     window.location.href = response.payload;
                 }
             } catch (err) {
-                setLoading(false);
                 console.error('Error linking social account:', err);
+            } finally {
+                setLoading(false);
             }
         }
     };
@@ -149,7 +153,7 @@ const ProfileSocials:FC<ProfileSocialsProps> = (props) => {
       }
 
     return (
-        <div className="w-full">
+        <div className="w-full flex flex-col gap-2">
             <CircleLoader
                 color={color}
                 loading={loading}
@@ -160,60 +164,47 @@ const ProfileSocials:FC<ProfileSocialsProps> = (props) => {
             />
 
             {socials.includes("twitter") && (
-
-                <div
-                    className="relative bg-orange-500 text-white rounded-lg p-2 w-full my-2 hover:cursor-pointer"
-                    onClick={() => linkSocial("twitter")}
-                >
-                    {getTwitterUsername() ?
-                        (
-                            <div className="flex items-center">
-                                <LinkBreak1Icon width="24" height="24" onClick={ () => unlinkSocial("twitter")}/>
-                                <span className="text-base font-medium p-1 ml-2">{getTwitterUsername()}</span>
-                            </div>
-                        ) :
-                            <span className="text-base font-medium p-1 flex items-center">
-                                Connect Twitter
-                            </span>
-                    }
-                    <div className="absolute top-3 right-3">
-                    <TwitterX width="20" height="20"/>
-                    </div>
-                </div>
+                <ProfileSocialButton
+                    social='Twitter'
+                    username={metadata.TWITTER_USERNAME}
+                    logo={TwitterX}
+                    onClick={()=>linkSocial('twitter')}
+                    onUnlink={()=>unlinkSocial('twitter')}
+                    disabled={loading}
+                />
             )}
 
-            {/*{socials.includes("telegram") && ( TODO:later */ }
-
-            {/*    <div*/}
-            {/*        className="relative bg-orange-500 text-white rounded-lg p-2 w-full my-2">*/}
-            {/*        <span className="text-base	font-medium p-1">Connect Telegram</span>*/}
-            {/*        <div className="absolute top-3 right-3">*/}
-            {/*            <Telegram width="20" height="20"/>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*)}*/}
+            {socials.includes("telegram") && (
+                <ProfileSocialButton
+                    social='Telegram'
+                    username={metadata.TELEGRAM_USERNAME}
+                    logo={Telegram}
+                    onClick={()=>linkSocial('telegram')}
+                    onUnlink={()=>unlinkSocial('telegram')}
+                    disabled={loading}
+                />
+            )}
 
             {socials.includes("discord") && (
+                <ProfileSocialButton
+                    social='Discord'
+                    username={metadata.DISCORD_USERNAME}
+                    logo={Discord}
+                    onClick={()=>linkSocial('discord')}
+                    onUnlink={()=>unlinkSocial('discord')}
+                    disabled={loading}
+                />
+            )}
 
-                <div
-                    className="relative bg-orange-500 text-white rounded-lg p-2 w-full my-2"
-                    onClick={() => linkSocial("discord")}
-                >
-                    {getDiscordUsername() ?
-                        (
-                            <div className="flex items-center">
-                                <LinkBreak1Icon width="24" height="24" onClick={ () => unlinkSocial("discord")}/>
-                                <span className="text-base font-medium p-1 ml-2">{getDiscordUsername()}</span>
-                            </div>
-                        ) :
-                            <span className="text-base font-medium p-1 flex items-center">
-                                Connect Discord
-                            </span>
-                    }
-                    <div className="absolute top-3 right-3">
-                        <Discord width="20" height="20"/>
-                    </div>
-                </div>
+            {socials.includes("reddit") && (
+                <ProfileSocialButton
+                    social='Reddit'
+                    username={metadata.REDDIT_USERNAME}
+                    logo={Reddit}
+                    onClick={()=>linkSocial('reddit')}
+                    onUnlink={()=>unlinkSocial('reddit')}
+                    disabled={loading}
+                />
             )}
 
         </div>
