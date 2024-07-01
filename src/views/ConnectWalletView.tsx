@@ -15,7 +15,13 @@ import { ApiResponseDto } from "@/common/bonusblock_api/dto/ApiResponseDto.ts";
 import { setLoginFailure, setLoginSuccess } from "@/store/loginSlice.ts";
 import { RootState } from "@/store/store.ts";
 import { useEffect } from "react";
-
+import { CoinbaseWalletSDK } from '@coinbase/wallet-sdk'
+import Web3 from "web3";
+ 
+const coinbaseSdk = new CoinbaseWalletSDK({
+    appName: "BaseChain x BonusBlock",
+    appChainIds: [8453]
+});
 
 const ConnectWalletView = () => {
 
@@ -23,7 +29,6 @@ const ConnectWalletView = () => {
     const { fetchData } = useAxios();
     const dispatch = useDispatch();
 
-    const { waas, user } = useWalletContext();  
     const { sdk, connected, connecting, provider, chainId } = useSDK();  
 
     const userId = useSelector((state: RootState) => state.login.user?.account.userId);
@@ -32,17 +37,52 @@ const ConnectWalletView = () => {
         if (userId) navigate('/quests');
     }, [userId])
 
-    const handleSmartWalletClick = () => { 
-        navigate('/quests');
-    };
-
     const handleCoinbaseLogin = async () => {
         try {
-            waas?.login();
+            const nonce = 'TODO';
+            const authTicketResponse = await getAuthTicket(nonce);
+            if (!authTicketResponse.success) {
+                throw "Failed to get auth ticket";
+            }
+
+            const provider = coinbaseSdk.makeWeb3Provider({options: 'smartWalletOnly'});
+            const addresses: string[] = await provider.request({method: 'eth_requestAccounts'});
+            const web3 = new Web3(provider);
+            const signedMessage = await web3.eth.personal.sign(authTicketResponse.payload, addresses[0], 'idk_what_this_param_is_for')
+        
+            //* TODO backend needs support added for smart-contract accounts' signatures. *//
+            // const loginResponse = await finishLogin({
+            //     nonce,
+            //     signedMessage,
+            //     blockchainName: 'Base'
+            // });
+            // if (loginResponse.success) {
+            //     dispatch(setLoginSuccess(loginResponse.payload));
+            // } else {
+            //     throw "Failed to authenticate";
+            // }
+
+            const demoLoginResponse: Partial<LoginResponse> = {
+                account: {
+                    userId: 'Smart Wallet User',
+                    wallets: [{
+                        network: 'Base',
+                        address: addresses[0],
+                        createdOn: new Date().toISOString(),
+                        modifiedOn: new Date().toISOString(),
+                    }]
+                } as any,
+                session: {
+                    token: 'NO TOKEN YET',
+                    expiresOn: new Date(new Date().valueOf() + 60 * 60 * 24 * 1000).toISOString()
+                }
+            }
+            dispatch(setLoginSuccess(demoLoginResponse as any));
+
             navigate('/quests');
-        } catch (error) {
+        } catch (error: any) {
             console.error('Failed to connect wallet:', error);
-            navigate('/quests');
+            dispatch(setLoginFailure(error.toString()));
         }
         return null
     };
@@ -123,7 +163,7 @@ const ConnectWalletView = () => {
                         <p className="text-gray-400">The fastest, easiest, and most secure way to get onchain.</p>
                     </div>
                     <div className="space-y-4"> ˇ
-                        <RainbowButton text="Create Smart Wallet" onClick={handleSmartWalletClick} />
+                        <RainbowButton text="Create Smart Wallet" onClick={handleCoinbaseLogin} />
                         <RainbowButton text="I already have a wallet" onClick={handleCoinbaseLogin} />
 
                     </div>
